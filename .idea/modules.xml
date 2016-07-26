@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RadarChart.iml" filepath="$PROJECT_DIR$/RadarChart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/radarchart/radarchart.iml" filepath="$PROJECT_DIR$/radarchart/radarchart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testapp/testapp.iml" filepath="$PROJECT_DIR$/testapp/testapp.iml" />
+    </modules>
+  </component>
+</project>
