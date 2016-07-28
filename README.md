@@ -2,6 +2,14 @@
 
 This library provides a View that renders a radar chart and a widget for editing the values in the chart.
 
+## Installation
+
+Add the dependency to your module's **build.gradle** file:
+
+    dependencies {
+        compile 'com.ultramegasoft.radarchart:radar-chart:0.1.0'
+    }
+
 ## Classes
 
 ### RadarView
