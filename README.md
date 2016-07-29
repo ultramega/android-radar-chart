@@ -6,9 +6,11 @@ This library provides a View that renders a radar chart and a widget for editing
 
 Add the dependency to your module's **build.gradle** file:
 
-    dependencies {
-        compile 'com.ultramegasoft.radarchart:radar-chart:0.1.0'
-    }
+```gradle
+dependencies {
+    compile 'com.ultramegasoft.radarchart:radar-chart:0.1.0'
+}
+```
 
 ## Usage
 
@@ -18,61 +20,79 @@ For a full example, see the example application in the **testapp** module. Below
 
    1. Add the View to the layout:
 
-           <com.ultramegasoft.radarchart.RadarView
-               android:id="@+id/radar"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_centerHorizontal="true" />
+```xml
+<com.ultramegasoft.radarchart.RadarView
+    android:id="@+id/radar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true" />
+```
 
    2. Load the View from the layout:
 
-           mRadarView = (RadarView)findViewById(R.id.radar);
+```java
+mRadarView = (RadarView)findViewById(R.id.radar);
+```
 
    3. Set the data for the RadarView to display as an `ArrayList` of `RadarHolder` objects:
 
-           mRadarView.setData(mData);
+```java
+mRadarView.setData(mData);
+```
 
    4. Enable or disable interactive mode:
 
-            mRadarView.setInteractive(true);
-            mRadarView.setInteractive(false);
+```java
+mRadarView.setInteractive(true);
+mRadarView.setInteractive(false);
+```
 
 ### RadarEditWidget
 
    1. Add the app namespace to the root element of your layout if it is not already added:
 
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+```xml
+xmlns:app="http://schemas.android.com/apk/res-auto"
+```
 
    2. Add the View to the layout:
 
-           <com.ultramegasoft.radarchart.RadarEditWidget
-               android:id="@+id/edit_widget"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               app:showButtonBar="true" />
+```xml
+<com.ultramegasoft.radarchart.RadarEditWidget
+    android:id="@+id/edit_widget"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    app:showButtonBar="true" />
+```
 
    3. Load the View from the layout:
 
-            mEditWidget = (RadarEditWidget)findViewById(R.id.edit_widget);
+```java
+mEditWidget = (RadarEditWidget)findViewById(R.id.edit_widget);
+```
 
    4. Set the target `RadarView` for the `RadarEditWidget` to control:
 
-            mEditWidget.setTarget(mRadarView);
+```java
+mEditWidget.setTarget(mRadarView);
+```
 
    5. If you enabled the button bar, set the callbacks for the buttons:
 
-           mEditWidget.setOnButtonClickListener(new RadarEditWidget.OnButtonClickListener() {
-               @Override
-               public void onSave() {
-                   // Save button clicked
-               }
-   
-               @Override
-               public void onCancel() {
-                   // Cancel button clicked
-               }
-           });
+```java
+mEditWidget.setOnButtonClickListener(new RadarEditWidget.OnButtonClickListener() {
+    @Override
+    public void onSave() {
+        // Save button clicked
+    }
+    
+    @Override
+    public void onCancel() {
+        // Cancel button clicked
+    }
+});
+```
 
 ## Documentation
 
