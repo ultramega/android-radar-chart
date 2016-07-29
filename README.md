@@ -27,6 +27,22 @@ Full Java reference is available at https://ultramega.github.io/android-radar-ch
 | polygonColorInteractive | Color   | #DDFF66FF              | The color for the polygon when the chart is in interactive mode       |
 | selectedColor           | Color   | #FFEFAC1D              | The color for the selected item when the chart is in interactive mode |
 
+##### Gravity Options
+
+Options available for the `gravity` XML attribute. Multiple options can be combined by separating them with the `|` character.
+
+| Constant          | Description                                                                              |
+|-------------------|------------------------------------------------------------------------------------------|
+| top               | Push object to the top of its container                                                  |
+| bottom            | Push object to the bottom of its container                                               |
+| left              | Push object to the left of its container                                                 |
+| right             | Push object to the right of its container                                                |
+| center_vertical   | Place object in the vertical center of its container                                     |
+| center_horizontal | Place object in the horizontal center of its container                                   |
+| center            | Place the object in the center of its container in both the vertical and horizontal axis |
+| start             | Push object to the beginning of its container                                            |
+| end               | Push object to the end of its container                                                  | 
+
 #### RadarEditWidget
 
 | Name          | Type      | Default   | Description                                    |
