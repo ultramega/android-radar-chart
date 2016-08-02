@@ -689,16 +689,16 @@ public class RadarView extends View {
     /**
      * Turn the {@link RadarView} to a specific {@link RadarHolder}.
      *
-     * @param key The array index of the RadarHolder to turn to
+     * @param index The array index of the RadarHolder to turn to
      */
-    public void turnTo(int key) {
+    public void turnTo(int index) {
         if(!mInteractive || mIsAnimating) {
             return;
         }
-        if(key < 0 || key >= mData.size()) {
+        if(index < 0 || index >= mData.size()) {
             return;
         }
-        mSelected = key;
+        mSelected = index;
         onSelectedItemChanged();
         turn();
     }
