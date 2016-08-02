@@ -41,6 +41,7 @@ import android.view.Gravity;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Custom {@link View} to render a simple radar chart from a list of {@link RadarHolder}s.
@@ -589,7 +590,7 @@ public class RadarView extends View {
      *
      * @param data A list of RadarHolders for the RadarView to render
      */
-    public void setData(ArrayList<RadarHolder> data) {
+    public void setData(List<RadarHolder> data) {
         if(data != null) {
             mData = new ArrayList<>();
             for(RadarHolder item : data) {
@@ -601,7 +602,7 @@ public class RadarView extends View {
             mData = null;
         }
 
-        onDataChanged(data);
+        onDataChanged(mData);
         mCalculated = false;
         invalidate();
     }
