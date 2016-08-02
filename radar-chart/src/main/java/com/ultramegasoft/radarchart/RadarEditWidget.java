@@ -37,6 +37,11 @@ import java.util.ArrayList;
 
 /**
  * A widget for interacting with a RadarView.
+ * <p>
+ * The widget presents the user with buttons to select the previous and next item in the targeted
+ * {@link RadarView} and a slider to modify the value of the selected item.
+ * <p>
+ * The widget also optionally displays a button bar with a Cancel and Save button.
  *
  * @author Steve Guidetti
  */
@@ -64,16 +69,16 @@ public class RadarEditWidget extends LinearLayout {
     private final RelativeLayout mButtonBar;
 
     /**
-     * Interface for listeners for button bar clicks
+     * Interface for listeners for {@link RadarEditWidget} button bar clicks.
      */
     public interface OnButtonClickListener {
         /**
-         * Called when the save button is clicked
+         * Called when the Save button is clicked.
          */
         void onSave();
 
         /**
-         * Called when the cancel button is clicked
+         * Called when the Cancel button is clicked.
          */
         void onCancel();
     }
@@ -131,7 +136,7 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Apply the XML attributes.
+     * Apply the XML attributes from the layout.
      *
      * @param attrs The AttributeSet from the constructor
      */
@@ -152,7 +157,8 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Set up the SeekBar widget.
+     * Set up the SeekBar widget. This sets the current value and scale of the SeekBar, and creates
+     * the listener for value changes.
      */
     private void setupSeekBar() {
         if(mRadarView != null) {
@@ -223,16 +229,16 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Set the listener for button clicks.
+     * Set the listener for button bar clicks.
      *
-     * @param listener An OnButtonClickListener object
+     * @param listener An {@link OnButtonClickListener} object
      */
     public void setOnButtonClickListener(OnButtonClickListener listener) {
         mListener = listener;
     }
 
     /**
-     * Set the target RadarView to interact with.
+     * Set the target {@link RadarView} to interact with.
      *
      * @param radarView A RadarView to interact with
      */
@@ -302,7 +308,7 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Called when the forward button is clicked. Tels the target RadarView to rotate
+     * Called when the forward button is clicked. Tells the target RadarView to rotate
      * counter-clockwise.
      */
     private void onForward() {
@@ -312,7 +318,7 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Notify the listener that the save button was clicked.
+     * Notify the listener that the Save button was clicked.
      */
     private void onSave() {
         if(mListener != null) {
@@ -321,7 +327,7 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     /**
-     * Notify the listener that the cancel button was clicked.
+     * Notify the listener that the Cancel button was clicked.
      */
     private void onCancel() {
         if(mListener != null) {

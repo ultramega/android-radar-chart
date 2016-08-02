@@ -43,8 +43,16 @@ import android.view.View;
 import java.util.ArrayList;
 
 /**
- * Custom View to render a simple radar graph with configurable values, labels, and scale. Also
- * supports editing method calls. Can be rotated with animation.
+ * Custom {@link View} to render a simple radar chart from a list of {@link RadarHolder}s.
+ * <p>
+ * The colors of the circles, labels, and polygon can be customized using the appropriate methods
+ * or XML attributes. The gravity of the {@link RadarView} can also be configured programmatically
+ * or via XML attribute.
+ * <p>
+ * The configurable maximum value is the number of steps from the center to the outermost circle.
+ * <p>
+ * When enabled, interactive mode allows the values of the RadarHolders populating the chart to be
+ * modified via an attached {@link RadarEditWidget}.
  *
  * @author Steve Guidetti
  */
@@ -94,7 +102,7 @@ public class RadarView extends View {
     private int mGravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
 
     /**
-     * The distance between values in pixels
+     * The distance between each value in pixels
      */
     private int mScale;
 
@@ -184,43 +192,43 @@ public class RadarView extends View {
     private final ArrayList<RadarViewListener> mListeners = new ArrayList<>();
 
     /**
-     * Interface for objects to listen for changes to RadarViews.
+     * Interface for objects to listen for changes to a {@link RadarView}.
      */
     public interface RadarViewListener {
         /**
-         * Called when the data is changed.
+         * Called when the list of {@link RadarHolder}s in the {@link RadarView} is changed.
          *
          * @param newData The new data
          */
         void onDataChanged(ArrayList<RadarHolder> newData);
 
         /**
-         * Called when the selected item index is changed.
+         * Called when the index of the selected {@link RadarHolder} is changed.
          *
-         * @param index The index of the selected item
-         * @param name  The name of the selected item
-         * @param value The value of the selected item
+         * @param index The index of the selected RadarHolder
+         * @param name  The name of the selected RadarHolder
+         * @param value The value of the selected RadarHolder
          */
         void onSelectedItemChanged(int index, String name, int value);
 
         /**
-         * Called when the value of the selected item is changed.
+         * Called when the value of the selected {@link RadarHolder} is changed.
          *
-         * @param newValue The new value of the selected item
+         * @param newValue The new value of the selected RadarHolder
          */
         void onSelectedValueChanged(int newValue);
 
         /**
-         * Called when the maximum item value is changed.
+         * Called when the maximum value of the {@link RadarView} is changed.
          *
-         * @param maxValue The new maximum value
+         * @param maxValue The new maximum value of the RadarView
          */
         void onMaxValueChanged(int maxValue);
 
         /**
-         * Called when the interactive status is changed.
+         * Called when interactive mode is enabled or disabled.
          *
-         * @param interactive Whether the RadarView is interactive
+         * @param interactive Whether the {@link RadarView} is in interactive mode
          */
         void onInteractiveModeChanged(boolean interactive);
     }
@@ -381,9 +389,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Add a RadarViewListener to this RadarView.
+     * Add a {@link RadarViewListener} to this {@link RadarView}.
      *
-     * @param listener A RadarViewListener
+     * @param listener An implementation of RadarViewListener
      */
     public void addRadarViewListener(RadarViewListener listener) {
         if(listener == null) {
@@ -393,18 +401,18 @@ public class RadarView extends View {
     }
 
     /**
-     * Remove a RadarViewListener from this RadarView.
+     * Remove a {@link RadarViewListener} from this {@link RadarView}.
      *
-     * @param listener A RadarViewListener
+     * @param listener The RadarViewListener to remove
      */
     public void removeRadarViewListener(RadarViewListener listener) {
         mListeners.remove(listener);
     }
 
     /**
-     * Set the Gravity flags for the view.
+     * Set the {@link Gravity} flags for the {@link RadarView}.
      *
-     * @param gravity One or more Gravity constants
+     * @param gravity The Gravity frags to set
      */
     public void setGravity(int gravity) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -416,7 +424,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Get the current Gravity flags.
+     * Get the current {@link Gravity} flags.
      *
      * @return The current Gravity flags
      */
@@ -508,7 +516,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Set the color used for the polygon while in interactive mode.
+     * Set the color used for the polygon when the {@link RadarView} is in interactive mode.
      *
      * @param color The color hex value
      */
@@ -518,7 +526,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Get the color used for the polygon while in interactive mode.
+     * Get the color used for the polygon when the {@link RadarView} is in interactive mode.
      *
      * @return The color hex value
      */
@@ -527,7 +535,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Get the maximum value any data point can have.
+     * Get the maximum value any {@link RadarHolder} in this {@link RadarView} can have.
      *
      * @return The maximum value
      */
@@ -536,7 +544,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Set the maximum value any data point can have.
+     * Set the maximum value any {@link RadarHolder} in this {@link RadarView} can have.
      *
      * @param maxValue The maximum value
      */
@@ -552,18 +560,18 @@ public class RadarView extends View {
     }
 
     /**
-     * Does this chart have any data?
+     * Does this {@link RadarView} have any data?
      *
-     * @return Whether the chart has data
+     * @return Whether the RadarView has data
      */
     public boolean hasData() {
         return mData != null && mData.size() > 0;
     }
 
     /**
-     * Get the data currently being rendered in this chart.
+     * Get the list of {@link RadarHolder}s currently being rendered in this {@link RadarView}.
      *
-     * @return An array of data points contained in RadarHolders
+     * @return The list of RadarHolders currently being rendered by this RadarView
      */
     public ArrayList<RadarHolder> getData() {
         if(!hasData()) {
@@ -577,9 +585,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Set the data to render in this chart.
+     * Set the list of {@link RadarHolder}s to render in this {@link RadarView}.
      *
-     * @param data An array of data points contained in RadarHolders
+     * @param data A list of RadarHolders for the RadarView to render
      */
     public void setData(ArrayList<RadarHolder> data) {
         if(data != null) {
@@ -599,16 +607,23 @@ public class RadarView extends View {
     }
 
     /**
-     * Is the chart in interactive mode?
+     * Is this {@link RadarView} in interactive mode?
      *
-     * @return Whether the chart is interactive
+     * @return Whether the RadarView is in interactive mode
      */
     public boolean isInteractive() {
         return mInteractive;
     }
 
     /**
-     * Enable or disable interactive mode. The chart must have data to enable interactive mode.
+     * Enable or disable interactive mode.
+     * <p>
+     * When interactive mode is enabled, the polygon changes to the color configured for
+     * interactive mode and the selected item is highlighted. Interactive mode also enables
+     * changing the value of the selected {@link RadarHolder} and rotating the {@link RadarView}
+     * with animation.
+     * <p>
+     * The RadarView must have data to enable interactive mode.
      *
      * @param interactive Whether to enable interactive mode
      */
@@ -641,6 +656,12 @@ public class RadarView extends View {
 
     /**
      * Turn the chart counter-clockwise.
+     * <p>
+     * This method selects the next {@link RadarHolder} and begins the animation to rotate the
+     * {@link RadarView} counter-clockwise.
+     * <p>
+     * This method has no effect if interactive mode is disabled or if the RadarView is currently
+     * animating.
      */
     public void turnCCW() {
         if(!mInteractive || mIsAnimating) {
@@ -651,6 +672,12 @@ public class RadarView extends View {
 
     /**
      * Turn the chart clockwise.
+     * <p>
+     * This method selects the previous {@link RadarHolder} and begins the animation to rotate the
+     * {@link RadarView} clockwise.
+     * <p>
+     * This method has no effect if interactive mode is disabled or if the RadarView is currently
+     * animating.
      */
     public void turnCW() {
         if(!mInteractive || mIsAnimating) {
@@ -660,9 +687,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Turn the chart to a specific data point.
+     * Turn the {@link RadarView} to a specific {@link RadarHolder}.
      *
-     * @param key The data point to turn to
+     * @param key The array index of the RadarHolder to turn to
      */
     public void turnTo(int key) {
         if(!mInteractive || mIsAnimating) {
@@ -677,18 +704,18 @@ public class RadarView extends View {
     }
 
     /**
-     * Get the index of the currently selected data point.
+     * Get the index of the currently selected {@link RadarHolder}.
      *
-     * @return The array index of the selected data point
+     * @return The array index of the selected RadarHolder
      */
     public int getSelectedIndex() {
         return mSelected;
     }
 
     /**
-     * Get the label for the currently selected data point.
+     * Get the name of the currently selected {@link RadarHolder}.
      *
-     * @return The name field of the selected data point
+     * @return The name of the selected RadarHolder
      */
     public String getSelectedName() {
         if(!hasData()) {
@@ -698,9 +725,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Get the value of the currently selected data point.
+     * Get the value of the currently selected {@link RadarHolder}.
      *
-     * @return The value of the selected data point
+     * @return The value of the currently selected RadarHolder
      */
     public int getSelectedValue() {
         if(!hasData()) {
@@ -710,9 +737,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Set the value of the currently selected data point.
+     * Set the value of the currently selected {@link RadarHolder}.
      *
-     * @param value The value
+     * @param value The value of the currently selected RadarHolder
      */
     public void setSelectedValue(int value) {
         if(!hasData()) {
@@ -726,7 +753,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Trigger turn animation. This will animate the chart rotating to the selected point.
+     * Begin a turning animation. This will animate the chart rotating to the selected point.
      */
     private void turn() {
         mAnimationQueue.animateOffset(Math.PI / mData.size() * 2 * mSelected);
@@ -735,7 +762,7 @@ public class RadarView extends View {
     /**
      * Notify all listeners that the data has changed.
      *
-     * @param newData Te new data
+     * @param newData The new data
      */
     private void onDataChanged(ArrayList<RadarHolder> newData) {
         for(RadarViewListener listener : mListeners) {
@@ -744,7 +771,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Notify all listeners that the selected item index has changed.
+     * Notify all listeners that the selected RadarHolder has changed.
      */
     private void onSelectedItemChanged() {
         final RadarHolder item = mData.get(mSelected);
@@ -754,7 +781,7 @@ public class RadarView extends View {
     }
 
     /**
-     * Notify all listeners that the value of the selected item has changed.
+     * Notify all listeners that the value of the selected RadarHolder has changed.
      *
      * @param newValue The new value of the selected item
      */
@@ -776,9 +803,9 @@ public class RadarView extends View {
     }
 
     /**
-     * Notify all listeners that the interactive mode status has changed.
+     * Notify all listeners that interactive mode has been enabled or disabled.
      *
-     * @param interactive Whether the RadarView is interactive
+     * @param interactive Whether the RadarView is in interactive mode
      */
     private void onInteractiveModeChanged(boolean interactive) {
         for(RadarViewListener listener : mListeners) {
@@ -933,12 +960,12 @@ public class RadarView extends View {
         private final Handler mHandler = new Handler();
 
         /**
-         * The time the current animation started
+         * The Unix timestamp at which the current animation started
          */
         private long mStartTime;
 
         /**
-         * The duration of the current animation
+         * The duration in milliseconds of the current animation
          */
         private double mDuration;
 
@@ -973,10 +1000,10 @@ public class RadarView extends View {
         };
 
         /**
-         * Animate the offset value.
+         * Animate the angle offset value.
          *
-         * @param target   Target angle offset
-         * @param duration Duration in milliseconds
+         * @param target   The angle offset to animate to
+         * @param duration Animation duration in milliseconds
          */
         public void animateOffset(double target, double duration) {
             mStartTime = System.currentTimeMillis();
@@ -999,9 +1026,9 @@ public class RadarView extends View {
         }
 
         /**
-         * Animate the offset value, with a duration of 400ms.
+         * Animate the angle offset value, with a duration of 400ms.
          *
-         * @param target Target angle offset
+         * @param target The angle offset to animate to
          */
         public void animateOffset(double target) {
             animateOffset(target, 400.0);

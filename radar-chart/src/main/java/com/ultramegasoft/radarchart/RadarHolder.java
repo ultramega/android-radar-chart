@@ -26,7 +26,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Holds the data associated with a data point on a RadarView.
+ * Holds the data associated with a data point on a {@link RadarView}.
+ * <p>
+ * Each instance consists of an immutable name field and a mutable value field.
  *
  * @author Steve Guidetti
  */
@@ -44,18 +46,24 @@ public class RadarHolder implements Parcelable {
     };
 
     /**
-     * The label for this item
+     * The name of this item
+     * <p>
+     * This is rendered as the label of the item on the {@link RadarView}.
      */
     public final String name;
 
     /**
      * The value of this item
+     * <p>
+     * This is rendered as the distance of the polygon from the center of the {@link RadarView}.
      */
     public int value;
 
     /**
-     * @param name  The name of this item to use as the label
-     * @param value The value of this data point
+     * Construct a new {@link RadarHolder}.
+     *
+     * @param name  The name of this item
+     * @param value The value of this item
      */
     public RadarHolder(String name, int value) {
         this.name = name;
