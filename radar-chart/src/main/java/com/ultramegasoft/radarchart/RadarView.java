@@ -602,7 +602,7 @@ public class RadarView extends View {
             mData = null;
         }
 
-        onDataChanged(mData);
+        onDataChanged();
         mCalculated = false;
         invalidate();
     }
@@ -762,10 +762,12 @@ public class RadarView extends View {
 
     /**
      * Notify all listeners that the data has changed.
-     *
-     * @param newData The new data
      */
-    private void onDataChanged(ArrayList<RadarHolder> newData) {
+    private void onDataChanged() {
+        if(mListeners.isEmpty()){
+            return;
+        }
+        final ArrayList<RadarHolder> newData = new ArrayList<>(mData);
         for(RadarViewListener listener : mListeners) {
             listener.onDataChanged(newData);
         }
@@ -937,7 +939,7 @@ public class RadarView extends View {
             setInteractive(bundle.getBoolean(STATE_EDITABLE, false));
 
             if(mData != null) {
-                onDataChanged(new ArrayList<>(mData));
+                onDataChanged();
             }
 
             super.onRestoreInstanceState(bundle.getParcelable(STATE_SUPER_STATE));
