@@ -37,10 +37,10 @@ import java.util.ArrayList;
 
 /**
  * A widget for interacting with a RadarView.
- * <p/>
+ * <p>
  * The widget presents the user with buttons to select the previous and next item in the targeted
  * {@link RadarView} and a slider to modify the value of the selected item.
- * <p/>
+ * <p>
  * The widget also optionally displays a button bar with a Cancel and Save button.
  *
  * @author Steve Guidetti
