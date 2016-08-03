@@ -145,8 +145,14 @@ public class RadarEditWidget extends LinearLayout {
      * @param attrs The AttributeSet from the constructor
      */
     private void applyAttrs(AttributeSet attrs) {
-        final TypedArray a =
-                getContext().obtainStyledAttributes(attrs, R.styleable.RadarEditWidget);
+        final int[] defaultAttrs = new int[] {
+                android.R.attr.textColorPrimary,
+        };
+        TypedArray a = getContext().getTheme().obtainStyledAttributes(defaultAttrs);
+        final int defaultTextColor = a.getColor(0, 0xffffffff);
+        a.recycle();
+
+        a = getContext().obtainStyledAttributes(attrs, R.styleable.RadarEditWidget);
 
         setShowButtonBar(a.getBoolean(R.styleable.RadarEditWidget_showButtonBar, false));
 
@@ -155,7 +161,8 @@ public class RadarEditWidget extends LinearLayout {
             mTxtItemName.setTextSize(textSize);
         }
 
-        mTxtItemName.setTextColor(a.getColor(R.styleable.RadarEditWidget_textColor, 0xFFFFFFFF));
+        mTxtItemName
+                .setTextColor(a.getColor(R.styleable.RadarEditWidget_textColor, defaultTextColor));
 
         a.recycle();
     }

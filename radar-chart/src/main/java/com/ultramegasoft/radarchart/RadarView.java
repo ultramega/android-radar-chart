@@ -45,13 +45,13 @@ import java.util.List;
 
 /**
  * Custom {@link View} to render a simple radar chart from a list of {@link RadarHolder}s.
- * <p>
+ * <p/>
  * The colors of the circles, labels, and polygon can be customized using the appropriate methods
  * or XML attributes. The gravity of the {@link RadarView} can also be configured programmatically
  * or via XML attribute.
- * <p>
+ * <p/>
  * The configurable maximum value is the number of steps from the center to the outermost circle.
- * <p>
+ * <p/>
  * When enabled, interactive mode allows the values of the RadarHolders populating the chart to be
  * modified via an attached {@link RadarEditWidget}.
  *
@@ -241,10 +241,20 @@ public class RadarView extends View {
     public RadarView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RadarView);
+        final int[] defaultAttrs = new int[] {
+                android.R.attr.textColorPrimary,
+                android.R.attr.textColorSecondary
+        };
+        TypedArray a = context.getTheme().obtainStyledAttributes(defaultAttrs);
+        final int defaultLabelColor = a.getColor(0, COLOR_LABEL);
+        //noinspection ResourceType
+        final int defaultCircleColor = a.getColor(1, COLOR_CIRCLE);
+        a.recycle();
+
+        a = context.obtainStyledAttributes(attrs, R.styleable.RadarView);
         setGravity(a.getInt(R.styleable.RadarView_gravity, mGravity));
-        final int labelColor = a.getColor(R.styleable.RadarView_labelColor, COLOR_LABEL);
-        final int circleColor = a.getColor(R.styleable.RadarView_circleColor, COLOR_CIRCLE);
+        final int labelColor = a.getColor(R.styleable.RadarView_labelColor, defaultLabelColor);
+        final int circleColor = a.getColor(R.styleable.RadarView_circleColor, defaultCircleColor);
         final int selectedColor = a.getColor(R.styleable.RadarView_selectedColor, COLOR_SELECTED);
         final int polygonColor = a.getColor(R.styleable.RadarView_polygonColor, COLOR_POLYGON);
         final int polygonColorInteractive = a.getColor(
@@ -622,12 +632,12 @@ public class RadarView extends View {
 
     /**
      * Enable or disable interactive mode.
-     * <p>
+     * <p/>
      * When interactive mode is enabled, the polygon changes to the color configured for
      * interactive mode and the selected item is highlighted. Interactive mode also enables
      * changing the value of the selected {@link RadarHolder} and rotating the {@link RadarView}
      * with animation.
-     * <p>
+     * <p/>
      * The RadarView must have data to enable interactive mode.
      *
      * @param interactive Whether to enable interactive mode
@@ -661,10 +671,10 @@ public class RadarView extends View {
 
     /**
      * Turn the chart counter-clockwise.
-     * <p>
+     * <p/>
      * This method selects the next {@link RadarHolder} and begins the animation to rotate the
      * {@link RadarView} counter-clockwise.
-     * <p>
+     * <p/>
      * This method has no effect if interactive mode is disabled or if the RadarView is currently
      * animating.
      */
@@ -677,10 +687,10 @@ public class RadarView extends View {
 
     /**
      * Turn the chart clockwise.
-     * <p>
+     * <p/>
      * This method selects the previous {@link RadarHolder} and begins the animation to rotate the
      * {@link RadarView} clockwise.
-     * <p>
+     * <p/>
      * This method has no effect if interactive mode is disabled or if the RadarView is currently
      * animating.
      */
@@ -768,7 +778,7 @@ public class RadarView extends View {
      * Notify all listeners that the data has changed.
      */
     private void onDataChanged() {
-        if(mListeners.isEmpty()){
+        if(mListeners.isEmpty()) {
             return;
         }
         final ArrayList<RadarHolder> newData = new ArrayList<>(mData);
