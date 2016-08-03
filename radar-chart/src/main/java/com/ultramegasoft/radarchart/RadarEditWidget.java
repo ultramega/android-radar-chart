@@ -135,6 +135,10 @@ public class RadarEditWidget extends LinearLayout {
         this(context, attrs);
     }
 
+    public RadarEditWidget(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        this(context, attrs);
+    }
+
     /**
      * Apply the XML attributes from the layout.
      *

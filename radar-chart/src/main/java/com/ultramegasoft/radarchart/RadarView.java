@@ -294,6 +294,10 @@ public class RadarView extends View {
         this(context, attrs);
     }
 
+    public RadarView(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
+        this(context, attrs);
+    }
+
     /**
      * Calculate and cache all the intersection points and label positions.
      */
