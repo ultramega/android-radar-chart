@@ -37,10 +37,10 @@ import java.util.ArrayList;
 
 /**
  * A widget for interacting with a RadarView.
- * <p>
+ * <p/>
  * The widget presents the user with buttons to select the previous and next item in the targeted
  * {@link RadarView} and a slider to modify the value of the selected item.
- * <p>
+ * <p/>
  * The widget also optionally displays a button bar with a Cancel and Save button.
  *
  * @author Steve Guidetti
@@ -97,6 +97,7 @@ public class RadarEditWidget extends LinearLayout {
         setGravity(Gravity.CENTER);
         final int padding = (int)res.getDimension(R.dimen.rew_padding);
         setPadding(padding, padding, padding, padding);
+        setBackgroundColor(0xaa000000);
 
         mTxtItemName = (TextView)findViewById(R.id.rew_current_item);
         mSeekBar = (SeekBar)findViewById(R.id.rew_slider);
@@ -145,14 +146,8 @@ public class RadarEditWidget extends LinearLayout {
      * @param attrs The AttributeSet from the constructor
      */
     private void applyAttrs(AttributeSet attrs) {
-        final int[] defaultAttrs = new int[] {
-                android.R.attr.textColorPrimary,
-        };
-        TypedArray a = getContext().getTheme().obtainStyledAttributes(defaultAttrs);
-        final int defaultTextColor = a.getColor(0, 0xffffffff);
-        a.recycle();
-
-        a = getContext().obtainStyledAttributes(attrs, R.styleable.RadarEditWidget);
+        final TypedArray a =
+                getContext().obtainStyledAttributes(attrs, R.styleable.RadarEditWidget);
 
         setShowButtonBar(a.getBoolean(R.styleable.RadarEditWidget_showButtonBar, false));
 
@@ -161,8 +156,7 @@ public class RadarEditWidget extends LinearLayout {
             mTxtItemName.setTextSize(textSize);
         }
 
-        mTxtItemName
-                .setTextColor(a.getColor(R.styleable.RadarEditWidget_textColor, defaultTextColor));
+        mTxtItemName.setTextColor(a.getColor(R.styleable.RadarEditWidget_textColor, 0xffffffff));
 
         a.recycle();
     }
