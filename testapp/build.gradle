@@ -14,8 +14,6 @@ android {
             minifyEnabled false
         }
     }
-    productFlavors {
-    }
 }
 
 dependencies {

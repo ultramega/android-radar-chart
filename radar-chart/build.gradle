@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'radar-chart'
@@ -23,7 +22,6 @@ ext {
     licenseUrl = 'https://sguidetti.mit-license.org/'
     allLicenses = ["MIT"]
 }
-
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
