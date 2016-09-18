@@ -37,8 +37,7 @@
             android:layout_weight="1"
             android:contentDescription="@string/rew_button_back"
             android:nextFocusLeft="@id/rew_button_back"
-            android:src="@drawable/ic_rotate_right"
-            android:tint="?android:attr/textColorPrimary" />
+            android:src="@drawable/ic_rotate_right" />
 
         <ImageButton
             android:id="@+id/rew_button_forward"
@@ -47,8 +46,7 @@
             android:layout_weight="1"
             android:contentDescription="@string/rew_button_forward"
             android:nextFocusRight="@id/rew_button_forward"
-            android:src="@drawable/ic_rotate_left"
-            android:tint="?android:attr/textColorPrimary" />
+            android:src="@drawable/ic_rotate_left" />
     </LinearLayout>
 
     <TextView
