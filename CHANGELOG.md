@@ -1,5 +1,9 @@
 # Android Radar Chart Changes
 
+## v.0.1.2 (9/18/16):
+
+   * Fix crash caused by reference to framework asset
+
 ## v.0.1.1 (8/3/16):
 
    * Changed default label and circle colors to be based on the default text colors
