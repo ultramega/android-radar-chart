@@ -36,6 +36,7 @@ android {
             minifyEnabled false
         }
     }
+    return void
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
