@@ -24,7 +24,7 @@ ext {
 }
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '24.0.3'
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 24
@@ -38,6 +38,8 @@ android {
     }
     return void
 }
-
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+dependencies {
+}
