@@ -23,11 +23,11 @@ ext {
     allLicenses = ["MIT"]
 }
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 3
         versionName "0.1.2"
     }
