@@ -426,9 +426,6 @@ public class RadarView extends View {
      * @param listener An implementation of RadarViewListener
      */
     public void addRadarViewListener(@NonNull RadarViewListener listener) {
-        if(listener == null) {
-            return;
-        }
         mListeners.add(listener);
     }
 

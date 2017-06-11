@@ -213,7 +213,7 @@ public class RadarEditWidget extends LinearLayout {
         mRadarViewListener = new RadarView.RadarViewListener() {
             @Override
             public void onDataChanged(@NonNull ArrayList<RadarHolder> newData) {
-                if(newData == null || newData.isEmpty()) {
+                if(newData.isEmpty()) {
                     onSelectedItemChanged(0, null, 0);
                     return;
                 }
