@@ -1022,7 +1022,7 @@ public class RadarView extends View {
          * @param target   The angle offset to animate to
          * @param duration Animation duration in milliseconds
          */
-        public void animateOffset(double target, double duration) {
+        void animateOffset(double target, double duration) {
             mStartTime = System.currentTimeMillis();
             mDuration = duration;
             mOriginalValue = mOffset;
@@ -1047,7 +1047,7 @@ public class RadarView extends View {
          *
          * @param target The angle offset to animate to
          */
-        public void animateOffset(double target) {
+        void animateOffset(double target) {
             animateOffset(target, 400.0);
         }
     }
