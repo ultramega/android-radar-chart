@@ -1,8 +1,15 @@
 # Android Radar Chart Changes
 
+## v.0.1.3 (6/11/17):
+
+   * Added annotations
+   * Added null checks
+   * Updated platform version
+   * Fixed lint warnings
+
 ## v.0.1.2 (9/18/16):
 
-   * Fix crash caused by reference to framework asset
+   * Fixed crash caused by reference to framework asset
 
 ## v.0.1.1 (8/3/16):
 
