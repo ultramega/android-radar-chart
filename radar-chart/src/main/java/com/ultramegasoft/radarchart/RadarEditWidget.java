@@ -25,6 +25,8 @@ package com.ultramegasoft.radarchart;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -49,23 +51,29 @@ public class RadarEditWidget extends LinearLayout {
     /**
      * The target RadarView to interact with
      */
+    @Nullable
     private RadarView mRadarView;
 
     /**
      * The listener for button clicks
      */
+    @Nullable
     private OnButtonClickListener mListener;
 
     /**
      * The listener used to be notified of changes to the target RadarView
      */
+    @Nullable
     private RadarView.RadarViewListener mRadarViewListener;
 
     /**
      * Views from the widget's layout
      */
+    @NonNull
     private final TextView mTxtItemName;
+    @NonNull
     private final SeekBar mSeekBar;
+    @NonNull
     private final RelativeLayout mButtonBar;
 
     /**
@@ -87,7 +95,7 @@ public class RadarEditWidget extends LinearLayout {
         this(context, null);
     }
 
-    public RadarEditWidget(Context context, AttributeSet attrs) {
+    public RadarEditWidget(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         inflate(getContext(), R.layout.widget_radar_edit, this);
@@ -133,12 +141,13 @@ public class RadarEditWidget extends LinearLayout {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public RadarEditWidget(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RadarEditWidget(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         this(context, attrs);
     }
 
     @SuppressWarnings("UnusedParameters")
-    public RadarEditWidget(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RadarEditWidget(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
+                           int defStyleRes) {
         this(context, attrs);
     }
 
@@ -147,7 +156,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @param attrs The AttributeSet from the constructor
      */
-    private void applyAttrs(AttributeSet attrs) {
+    private void applyAttrs(@Nullable AttributeSet attrs) {
         final TypedArray a =
                 getContext().obtainStyledAttributes(attrs, R.styleable.RadarEditWidget);
 
@@ -203,7 +212,7 @@ public class RadarEditWidget extends LinearLayout {
     private void setupRadarViewListener() {
         mRadarViewListener = new RadarView.RadarViewListener() {
             @Override
-            public void onDataChanged(ArrayList<RadarHolder> newData) {
+            public void onDataChanged(@NonNull ArrayList<RadarHolder> newData) {
                 if(newData == null || newData.isEmpty()) {
                     onSelectedItemChanged(0, null, 0);
                     return;
@@ -214,7 +223,7 @@ public class RadarEditWidget extends LinearLayout {
             }
 
             @Override
-            public void onSelectedItemChanged(int index, String name, int value) {
+            public void onSelectedItemChanged(int index, @Nullable String name, int value) {
                 setName(name);
                 setValue(value);
             }
@@ -240,7 +249,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @param listener An {@link OnButtonClickListener} object
      */
-    public void setOnButtonClickListener(OnButtonClickListener listener) {
+    public void setOnButtonClickListener(@Nullable OnButtonClickListener listener) {
         mListener = listener;
     }
 
@@ -249,7 +258,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @param radarView A RadarView to interact with
      */
-    public void setTarget(RadarView radarView) {
+    public void setTarget(@Nullable RadarView radarView) {
         if(mRadarView != null) {
             mRadarView.removeRadarViewListener(mRadarViewListener);
         }
@@ -303,7 +312,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @param name The new value
      */
-    private void setName(String name) {
+    private void setName(@Nullable String name) {
         mTxtItemName.setText(name);
     }
 

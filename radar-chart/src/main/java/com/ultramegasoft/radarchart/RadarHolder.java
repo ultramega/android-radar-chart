@@ -24,6 +24,7 @@ package com.ultramegasoft.radarchart;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Holds the data associated with a data point on a {@link RadarView}.
@@ -50,6 +51,7 @@ public class RadarHolder implements Parcelable {
      * <p>
      * This is rendered as the label of the item on the {@link RadarView}.
      */
+    @NonNull
     public final String name;
 
     /**
@@ -66,7 +68,7 @@ public class RadarHolder implements Parcelable {
      * @param name  The name of this item
      * @param value The value of this item
      */
-    public RadarHolder(String name, int value) {
+    public RadarHolder(@NonNull String name, int value) {
         this.name = name;
         this.value = value;
     }

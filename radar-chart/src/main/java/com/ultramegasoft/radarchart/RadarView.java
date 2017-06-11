@@ -36,6 +36,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -85,6 +87,7 @@ public class RadarView extends View {
     /**
      * The data to render
      */
+    @Nullable
     private ArrayList<RadarHolder> mData;
 
     /**
@@ -110,6 +113,7 @@ public class RadarView extends View {
     /**
      * The pre-calculated coordinates of each intersection of spoke and value
      */
+    @Nullable
     private float[][][] mPoints;
 
     /**
@@ -135,51 +139,61 @@ public class RadarView extends View {
     /**
      * Paint used for drawing the circles
      */
+    @NonNull
     private final Paint mCirclePaint;
 
     /**
      * Paint used for drawing the outer circle
      */
+    @NonNull
     private final Paint mOuterCirclePaint;
 
     /**
      * Paint used for drawing the center point
      */
+    @NonNull
     private final Paint mCenterPaint;
 
     /**
      * Paint used for drawing the lines
      */
+    @NonNull
     private final Paint mLinePaint;
 
     /**
      * Paint used for drawing the line for the selected item
      */
+    @NonNull
     private final Paint mSelectedLinePaint;
 
     /**
      * Paint used for drawing the labels
      */
+    @NonNull
     private final Paint mLabelPaint;
 
     /**
      * Paint used for drawing the label for the selected item
      */
+    @NonNull
     private final Paint mSelectedLabelPaint;
 
     /**
      * Paint used for drawing the polygon representing the data values
      */
+    @NonNull
     private final Paint mPolygonPaint;
 
     /**
      * Paint used for drawing the polygon representing the data values while in interactive mode
      */
+    @NonNull
     private final Paint mPolygonInteractivePaint;
 
     /**
      * Used to animate the chart in interactive mode
      */
+    @Nullable
     private AnimationQueue mAnimationQueue;
 
     /**
@@ -202,7 +216,7 @@ public class RadarView extends View {
          *
          * @param newData The new data
          */
-        void onDataChanged(ArrayList<RadarHolder> newData);
+        void onDataChanged(@NonNull ArrayList<RadarHolder> newData);
 
         /**
          * Called when the index of the selected {@link RadarHolder} is changed.
@@ -211,7 +225,7 @@ public class RadarView extends View {
          * @param name  The name of the selected RadarHolder
          * @param value The value of the selected RadarHolder
          */
-        void onSelectedItemChanged(int index, String name, int value);
+        void onSelectedItemChanged(int index, @Nullable String name, int value);
 
         /**
          * Called when the value of the selected {@link RadarHolder} is changed.
@@ -239,7 +253,7 @@ public class RadarView extends View {
         this(context, null);
     }
 
-    public RadarView(Context context, AttributeSet attrs) {
+    public RadarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         final int[] defaultAttrs = new int[] {
@@ -302,12 +316,12 @@ public class RadarView extends View {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public RadarView(Context context, AttributeSet attrs, int defStyle) {
+    public RadarView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         this(context, attrs);
     }
 
     @SuppressWarnings("UnusedParameters")
-    public RadarView(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
+    public RadarView(Context context, @Nullable AttributeSet attrs, int defStyle, int defStyleRes) {
         this(context, attrs);
     }
 
@@ -411,7 +425,7 @@ public class RadarView extends View {
      *
      * @param listener An implementation of RadarViewListener
      */
-    public void addRadarViewListener(RadarViewListener listener) {
+    public void addRadarViewListener(@NonNull RadarViewListener listener) {
         if(listener == null) {
             return;
         }
@@ -423,7 +437,7 @@ public class RadarView extends View {
      *
      * @param listener The RadarViewListener to remove
      */
-    public void removeRadarViewListener(RadarViewListener listener) {
+    public void removeRadarViewListener(@NonNull RadarViewListener listener) {
         mListeners.remove(listener);
     }
 
@@ -621,7 +635,7 @@ public class RadarView extends View {
      *
      * @param data A list of RadarHolders for the RadarView to render
      */
-    public void setData(List<RadarHolder> data) {
+    public void setData(@Nullable List<RadarHolder> data) {
         if(data != null) {
             mData = new ArrayList<>();
             for(RadarHolder item : data) {
@@ -750,6 +764,7 @@ public class RadarView extends View {
      *
      * @return The name of the selected RadarHolder
      */
+    @Nullable
     public String getSelectedName() {
         if(!hasData()) {
             return null;
