@@ -195,6 +195,7 @@ public class RadarView extends View {
     /**
      * Interface for objects to listen for changes to a {@link RadarView}.
      */
+    @SuppressWarnings({"WeakerAccess", "EmptyMethod", "UnusedParameters"})
     public interface RadarViewListener {
         /**
          * Called when the list of {@link RadarHolder}s in the {@link RadarView} is changed.
@@ -300,10 +301,12 @@ public class RadarView extends View {
         mPolygonInteractivePaint.setColor(polygonColorInteractive);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public RadarView(Context context, AttributeSet attrs, int defStyle) {
         this(context, attrs);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public RadarView(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
         this(context, attrs);
     }
@@ -429,6 +432,7 @@ public class RadarView extends View {
      *
      * @param gravity The Gravity frags to set
      */
+    @SuppressWarnings("WeakerAccess")
     public void setGravity(int gravity) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             gravity = Gravity.getAbsoluteGravity(gravity, getLayoutDirection());
@@ -443,6 +447,7 @@ public class RadarView extends View {
      *
      * @return The current Gravity flags
      */
+    @SuppressWarnings("unused")
     public int getGravity() {
         return mGravity;
     }
@@ -452,6 +457,7 @@ public class RadarView extends View {
      *
      * @param color The color hex value
      */
+    @SuppressWarnings("unused")
     public void setLabelColor(int color) {
         mLabelPaint.setColor(color);
         invalidate();
@@ -462,6 +468,7 @@ public class RadarView extends View {
      *
      * @return The color hex value
      */
+    @SuppressWarnings("unused")
     public int getLabelColor() {
         return mLabelPaint.getColor();
     }
@@ -471,6 +478,7 @@ public class RadarView extends View {
      *
      * @param color The color hex value
      */
+    @SuppressWarnings("unused")
     public void setCircleColor(int color) {
         mCirclePaint.setColor(color);
         mOuterCirclePaint.setColor(color);
@@ -484,6 +492,7 @@ public class RadarView extends View {
      *
      * @return The color hex value
      */
+    @SuppressWarnings("unused")
     public int getCircleColor() {
         return mCirclePaint.getColor();
     }
@@ -493,6 +502,7 @@ public class RadarView extends View {
      *
      * @param color The color hex value
      */
+    @SuppressWarnings("unused")
     public void setSelectedColor(int color) {
         mSelectedLabelPaint.setColor(color);
         mSelectedLinePaint.setColor(color);
@@ -507,6 +517,7 @@ public class RadarView extends View {
      *
      * @return The color hex value
      */
+    @SuppressWarnings("unused")
     public int getSelectedColor() {
         return mSelectedLabelPaint.getColor();
     }
@@ -516,6 +527,7 @@ public class RadarView extends View {
      *
      * @param color The color hex value
      */
+    @SuppressWarnings("unused")
     public void setPolygonColor(int color) {
         mPolygonPaint.setColor(color);
         invalidate();
@@ -526,6 +538,7 @@ public class RadarView extends View {
      *
      * @return The color hex value
      */
+    @SuppressWarnings("unused")
     public int getPolygonColor() {
         return mPolygonPaint.getColor();
     }
@@ -535,6 +548,7 @@ public class RadarView extends View {
      *
      * @param color The color hex value
      */
+    @SuppressWarnings("unused")
     public void setPolygonInteractiveColor(int color) {
         mPolygonInteractivePaint.setColor(color);
         invalidate();
@@ -545,6 +559,7 @@ public class RadarView extends View {
      *
      * @return The color hex value
      */
+    @SuppressWarnings("unused")
     public int getPolygonInteractiveColor() {
         return mPolygonInteractivePaint.getColor();
     }
@@ -563,6 +578,7 @@ public class RadarView extends View {
      *
      * @param maxValue The maximum value
      */
+    @SuppressWarnings("unused")
     public void setMaxValue(int maxValue) {
         if(mMaxValue == maxValue) {
             return;
@@ -579,6 +595,7 @@ public class RadarView extends View {
      *
      * @return Whether the RadarView has data
      */
+    @SuppressWarnings("WeakerAccess")
     public boolean hasData() {
         return mData != null && mData.size() > 0;
     }
@@ -706,6 +723,7 @@ public class RadarView extends View {
      *
      * @param index The array index of the RadarHolder to turn to
      */
+    @SuppressWarnings("WeakerAccess")
     public void turnTo(int index) {
         if(!mInteractive || mIsAnimating) {
             return;
@@ -1022,6 +1040,7 @@ public class RadarView extends View {
          * @param target   The angle offset to animate to
          * @param duration Animation duration in milliseconds
          */
+        @SuppressWarnings("SameParameterValue")
         void animateOffset(double target, double duration) {
             mStartTime = System.currentTimeMillis();
             mDuration = duration;

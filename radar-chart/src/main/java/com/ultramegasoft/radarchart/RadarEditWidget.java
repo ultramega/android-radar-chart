@@ -132,10 +132,12 @@ public class RadarEditWidget extends LinearLayout {
         });
     }
 
+    @SuppressWarnings("UnusedParameters")
     public RadarEditWidget(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public RadarEditWidget(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         this(context, attrs);
     }
@@ -270,6 +272,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @param showButtonBar Whether to display the button bar
      */
+    @SuppressWarnings("WeakerAccess")
     public void setShowButtonBar(boolean showButtonBar) {
         mButtonBar.setVisibility(showButtonBar ? VISIBLE : GONE);
     }
@@ -279,6 +282,7 @@ public class RadarEditWidget extends LinearLayout {
      *
      * @return Whether the button bar is showing
      */
+    @SuppressWarnings("unused")
     public boolean getShowButtonBar() {
         return mButtonBar.getVisibility() == VISIBLE;
     }

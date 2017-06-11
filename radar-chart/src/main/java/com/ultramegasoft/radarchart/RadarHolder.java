@@ -57,6 +57,7 @@ public class RadarHolder implements Parcelable {
      * <p>
      * This is rendered as the distance of the polygon from the center of the {@link RadarView}.
      */
+    @SuppressWarnings("WeakerAccess")
     public int value;
 
     /**
