@@ -621,6 +621,7 @@ public class RadarView extends View {
             return null;
         }
         final ArrayList<RadarHolder> data = new ArrayList<>();
+        assert mData != null;
         for(RadarHolder item : mData) {
             data.add(new RadarHolder(item.name, item.value));
         }
@@ -707,7 +708,7 @@ public class RadarView extends View {
      * animating.
      */
     public void turnCCW() {
-        if(!mInteractive || mIsAnimating) {
+        if(!mInteractive || mIsAnimating || mData == null) {
             return;
         }
         turnTo((mSelected == mData.size() - 1) ? 0 : mSelected + 1);
@@ -723,7 +724,7 @@ public class RadarView extends View {
      * animating.
      */
     public void turnCW() {
-        if(!mInteractive || mIsAnimating) {
+        if(!mInteractive || mIsAnimating || mData == null) {
             return;
         }
         turnTo((mSelected == 0) ? mData.size() - 1 : mSelected - 1);
@@ -736,7 +737,7 @@ public class RadarView extends View {
      */
     @SuppressWarnings("WeakerAccess")
     public void turnTo(int index) {
-        if(!mInteractive || mIsAnimating) {
+        if(!mInteractive || mIsAnimating || mData == null) {
             return;
         }
         if(index < 0 || index >= mData.size()) {
@@ -766,6 +767,7 @@ public class RadarView extends View {
         if(!hasData()) {
             return null;
         }
+        assert mData != null;
         return mData.get(mSelected).name;
     }
 
@@ -778,6 +780,7 @@ public class RadarView extends View {
         if(!hasData()) {
             return 0;
         }
+        assert mData != null;
         return mData.get(mSelected).value;
     }
 
@@ -792,6 +795,7 @@ public class RadarView extends View {
         }
         value = Math.max(0, value);
         value = Math.min(mMaxValue, value);
+        assert mData != null;
         mData.get(mSelected).value = value;
         onSelectedValueChanged(value);
         invalidate();
@@ -801,6 +805,8 @@ public class RadarView extends View {
      * Begin a turning animation. This will animate the chart rotating to the selected point.
      */
     private void turn() {
+        assert mData != null;
+        assert mAnimationQueue != null;
         mAnimationQueue.animateOffset(Math.PI / mData.size() * 2 * mSelected);
     }
 
@@ -811,7 +817,8 @@ public class RadarView extends View {
         if(mListeners.isEmpty()) {
             return;
         }
-        final ArrayList<RadarHolder> newData = new ArrayList<>(mData);
+        final ArrayList<RadarHolder> newData =
+                mData == null ? new ArrayList<RadarHolder>() : new ArrayList<>(mData);
         for(RadarViewListener listener : mListeners) {
             listener.onDataChanged(newData);
         }
@@ -821,6 +828,7 @@ public class RadarView extends View {
      * Notify all listeners that the selected RadarHolder has changed.
      */
     private void onSelectedItemChanged() {
+        assert mData != null;
         final RadarHolder item = mData.get(mSelected);
         for(RadarViewListener listener : mListeners) {
             listener.onSelectedItemChanged(mSelected, item.name, item.value);
@@ -895,10 +903,12 @@ public class RadarView extends View {
             return;
         }
 
+        assert mData != null;
         RadarHolder item = mData.get(0);
 
         // start polygon
         final Path polygon = new Path();
+        assert mPoints != null;
         polygon.moveTo(mPoints[0][item.value][0], mPoints[0][item.value][1]);
 
         float x, y;

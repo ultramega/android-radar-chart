@@ -217,6 +217,7 @@ public class RadarEditWidget extends LinearLayout {
                     onSelectedItemChanged(0, null, 0);
                     return;
                 }
+                assert mRadarView != null;
                 final int index = mRadarView.getSelectedIndex();
                 final RadarHolder item = newData.get(index);
                 onSelectedItemChanged(index, item.name, item.value);
@@ -259,7 +260,7 @@ public class RadarEditWidget extends LinearLayout {
      * @param radarView A RadarView to interact with
      */
     public void setTarget(@Nullable RadarView radarView) {
-        if(mRadarView != null) {
+        if(mRadarView != null && mRadarViewListener != null) {
             mRadarView.removeRadarViewListener(mRadarViewListener);
         }
 
