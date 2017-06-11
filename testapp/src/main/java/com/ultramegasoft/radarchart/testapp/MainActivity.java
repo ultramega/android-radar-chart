@@ -92,8 +92,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // Find the views in the layout.
-        mRadarView = (RadarView)findViewById(R.id.radar);
-        mEditWidget = (RadarEditWidget)findViewById(R.id.edit_widget);
+        mRadarView = findViewById(R.id.radar);
+        mEditWidget = findViewById(R.id.edit_widget);
 
         // Set the data for the RadarView to display.
         mRadarView.setData(mData);

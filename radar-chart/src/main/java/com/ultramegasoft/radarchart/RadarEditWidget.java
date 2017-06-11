@@ -99,9 +99,9 @@ public class RadarEditWidget extends LinearLayout {
         setPadding(padding, padding, padding, padding);
         setBackgroundColor(0xaa000000);
 
-        mTxtItemName = (TextView)findViewById(R.id.rew_current_item);
-        mSeekBar = (SeekBar)findViewById(R.id.rew_slider);
-        mButtonBar = (RelativeLayout)findViewById(R.id.rew_button_bar);
+        mTxtItemName = findViewById(R.id.rew_current_item);
+        mSeekBar = findViewById(R.id.rew_slider);
+        mButtonBar = findViewById(R.id.rew_button_bar);
 
         applyAttrs(attrs);
 
