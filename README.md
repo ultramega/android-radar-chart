@@ -8,7 +8,7 @@ Add the dependency to your module's **build.gradle** file:
 
 ```gradle
 dependencies {
-    compile 'com.ultramegasoft.radarchart:radar-chart:0.1.2'
+    compile 'com.ultramegasoft.radarchart:radar-chart:0.1.4'
 }
 ```
 
