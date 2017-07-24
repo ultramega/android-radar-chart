@@ -1,5 +1,9 @@
 # Android Radar Chart Changes
 
+## v.0.1.4 (7/24/17):
+
+   * Updated the Android Support Library
+
 ## v.0.1.3 (6/11/17):
 
    * Added annotations
