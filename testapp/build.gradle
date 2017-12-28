@@ -4,6 +4,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.ultramegasoft.radarchart.testapp"
+        //noinspection MinSdkTooLow
         minSdkVersion 8
         targetSdkVersion 27
         versionCode 1
