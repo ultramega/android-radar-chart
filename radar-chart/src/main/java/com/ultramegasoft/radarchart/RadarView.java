@@ -869,6 +869,7 @@ public class RadarView extends View {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final int width, height;
         if(MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.UNSPECIFIED) {
@@ -887,6 +888,7 @@ public class RadarView extends View {
 
     @Override
     @SuppressLint("DrawAllocation")
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     protected void onDraw(Canvas canvas) {
         if(!mCalculated) {
             calculatePoints();
